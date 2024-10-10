@@ -3,4 +3,5 @@
   publish = "dist" # Adjust to your build directory (could be "public", "dist", or others depending on your setup)
 
 [functions]
+  node_bundler = "esbuild"
   directory = "netlify/functions"
