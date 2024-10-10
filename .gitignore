@@ -23,3 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 src/lib/broadway-hat-6d9a8c120e20.json
+
+# Local Netlify folder
+.netlify

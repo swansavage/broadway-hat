@@ -1,10 +1,12 @@
-const { google } = require('googleapis');
-require('dotenv').config(); // Ensure you load the .env file for local development
+import { google } from 'googleapis';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const auth = new google.auth.JWT({
 	email: process.env.GOOGLE_CLIENT_EMAIL,
-	key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'), // Ensure formatting of private key
-	scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+	key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'), // Ensure private key formatting
+	scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'], // Add the read-only scope here
 });
 
 const sheets = google.sheets({ version: 'v4', auth });
