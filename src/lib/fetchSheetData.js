@@ -1,9 +1,10 @@
-import { google } from 'googleapis';
+const { google } = require('googleapis');
+require('dotenv').config(); // Ensure you load the .env file for local development
 
-// Google Sheets API setup
-const auth = new google.auth.GoogleAuth({
-	keyFile: './src/lib/broadway-hat-6d9a8c120e20.json', // Path to your credentials.json file
-	scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+const auth = new google.auth.JWT({
+	email: process.env.GOOGLE_CLIENT_EMAIL,
+	key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'), // Ensure formatting of private key
+	scopes: ['https://www.googleapis.com/auth/cloud-platform'],
 });
 
 const sheets = google.sheets({ version: 'v4', auth });
