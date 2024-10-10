@@ -11,7 +11,6 @@ console.log(data);
 				<th class="p-2">Opponent</th>
 				<th class="p-2">Score</th>
 				<th class="p-2">Winner</th>
-				<th class="p-2">Profile Image</th>
 				<th class="p-2">Social Media Links</th>
 			</tr>
 		</thead>
@@ -23,13 +22,16 @@ console.log(data);
 						<td class="p-2">{row[0]}</td> {/* Date */}
 						<td class="p-2">{row[1]}</td> {/* Opponent */}
 						<td class="p-2">{row[2]}</td> {/* Score */}
-						<td class="p-2">{row[3]}</td> {/* Winner */}
 						<td class="p-2">
-							<img
-								class="profile-img w-16 h-16 rounded-full"
-								alt="Loading..."
-							/>
+							<div class="flex items-center">
+								<img
+									class="profile-img w-16 h-16 rounded-full"
+									alt="Loading..."
+								/>
+								{row[3]}
+							</div>
 						</td>
+						{/* Winner */}
 						<td class="p-2">
 							{row[4] && (
 								<a href={row[4]} target="_blank" class="mr-2">
@@ -77,7 +79,7 @@ console.log(data);
 
 	async function fetchNHLRoster() {
 		try {
-			const response = await fetch('/.netlify/functions/nhl-roster');
+			const response = await fetch('/.netlify/functions/fetchNHLRoster');
 			const data = await response.json();
 			return [...data.forwards, ...data.defensemen, ...data.goalies]; // Combine forwards, defensemen, and goalies
 		} catch (error) {
